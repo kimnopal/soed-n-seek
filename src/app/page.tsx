@@ -6,6 +6,13 @@ export default function Home() {
   return (
     <>
       <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
+      <PostCard post={{ slug: "test" }} />
     </>
   );
 }

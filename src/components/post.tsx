@@ -13,10 +13,18 @@ const Post = () => {
           </h2>
 
           <div className="text-zinc-400 flex gap-2">
-            <Badge variant={"missing"}>hilang</Badge>
+            <Badge variant={"missing"} className="text-sm">
+              missing
+            </Badge>
             <span>&#8226;</span>
             <h4>
-              Posted by <Link href={"/"}>@fulan</Link>
+              Posted by{" "}
+              <Link
+                href={"/"}
+                className="font-semibold tracking-wide text-zinc-400"
+              >
+                @fulan
+              </Link>
             </h4>
             <span>&#8226;</span>
             <p>12/12/2012</p>
