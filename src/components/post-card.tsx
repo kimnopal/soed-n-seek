@@ -16,26 +16,22 @@ const PostCard = () => {
     <>
       <Card>
         <CardHeader>
-          <Link href={"/"} className="w-fit">
+          <Link href={"/posts"} className="w-fit">
             <CardTitle>Dicari barang hilang dari ingatan</CardTitle>
           </Link>
           <CardDescription>
-            <Badge variant={"destructive"} className="mt-1">
-              hilang
-            </Badge>
+            Posted by{" "}
+            <Link
+              href={"/"}
+              className="font-semibold tracking-wide text-zinc-400"
+            >
+              @fulan
+            </Link>
           </CardDescription>
         </CardHeader>
-        {/* <CardContent>
-          <p>Card Content</p>
-        </CardContent> */}
         <CardFooter>
           <div className="w-full flex justify-between items-end">
-            <p className="text-sm">
-              Posted by{" "}
-              <Link href={"/"} className="font-semibold tracking-wide">
-                @fulan
-              </Link>
-            </p>
+            <Badge variant={"missing"}>missing</Badge>
 
             <p className="text-sm">20 min ago</p>
           </div>
