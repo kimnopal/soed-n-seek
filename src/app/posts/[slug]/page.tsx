@@ -1,7 +1,9 @@
-export default function Post() {
+import Post from "@/components/post";
+
+export default function PostPage() {
   return (
     <>
-      <h1>Test</h1>
+      <Post />
     </>
   );
 }

@@ -11,12 +11,16 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const PostCard = () => {
+interface PostCardProps {
+  post: any;
+}
+
+const PostCard = ({ post }: PostCardProps) => {
   return (
     <>
       <Card>
         <CardHeader>
-          <Link href={"/posts"} className="w-fit">
+          <Link href={"/posts/" + post.slug} className="w-fit">
             <CardTitle>Dicari barang hilang dari ingatan</CardTitle>
           </Link>
           <CardDescription>
