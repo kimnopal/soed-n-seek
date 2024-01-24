@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 
 const Post = () => {
   return (
@@ -77,7 +77,7 @@ const Post = () => {
               href={"/"}
               className="w-fit flex items-center gap-2 px-3 py-2 rounded-md bg-zinc-800"
             >
-              <FaTwitter className="text-xl" />
+              <FaXTwitter className="text-xl" />
               <span>@fulan</span>
             </Link>
             <Link
