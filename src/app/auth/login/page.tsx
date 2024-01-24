@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const formSchema = z.object({
+const loginSchema = z.object({
   name: z
     .string()
     .min(2, { message: "Name must be at least 2 characters" })
@@ -35,7 +35,7 @@ const formSchema = z.object({
 
 const LoginPage = () => {
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       name: "",
       username: "",
@@ -44,12 +44,12 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof loginSchema>) => {
     console.log(values);
   };
 
   return (
-    <section>
+    <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-zinc-50">
@@ -108,7 +108,7 @@ const LoginPage = () => {
           </Form>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
