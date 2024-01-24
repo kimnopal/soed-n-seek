@@ -2,6 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:ring-offset-2 dark:border-zinc-800 dark:focus:ring-zinc-300",
@@ -15,7 +16,9 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-red-500 text-zinc-50 hover:bg-red-500/80 dark:bg-red-900 dark:text-zinc-50 dark:hover:bg-red-900/80",
         missing:
-          "cursor-pointer border-transparent bg-red-500 text-zinc-50 hover:bg-red-500/80 dark:bg-red-800 dark:text-zinc-50 dark:hover:bg-red-900/80",
+          "border-transparent bg-red-500 text-zinc-50 hover:bg-red-500/80 dark:bg-red-800 dark:text-zinc-50 dark:hover:bg-red-900/80",
+        found:
+          "border-transparent bg-emerald-500 text-zinc-50 hover:bg-red-500/80 dark:bg-emerald-800 dark:text-zinc-50 dark:hover:bg-emerald-900/80",
         outline: "text-zinc-950 dark:text-zinc-50",
       },
     },
@@ -27,11 +30,15 @@ const badgeVariants = cva(
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  href: string;
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({ className, variant, href, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <Link href={href}>
+      <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    </Link>
   );
 }
 

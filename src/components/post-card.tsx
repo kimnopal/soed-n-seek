@@ -77,7 +77,9 @@ const PostCard = ({ post }: PostCardProps) => {
         </CardHeader>
         <CardFooter>
           <div className="w-full flex justify-between items-end">
-            <Badge variant={"missing"}>missing</Badge>
+            <Badge variant={"missing"} href="/">
+              missing
+            </Badge>
 
             <p className="text-sm">20 min ago</p>
           </div>
