@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Separator } from "@/components/ui/separator";
+import { usePathname } from "next/navigation";
+import PartialLayout from "./_layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +28,7 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <Navbar />
-        <main className="mx-auto w-full max-w-3xl min-h-screen flex flex-col pt-10 py-20 px-4 gap-4 lg:max-w-4xl">
-          {children}
-        </main>
-        <Footer />
+        <PartialLayout>{children}</PartialLayout>
       </body>
     </html>
   );
