@@ -56,13 +56,13 @@ const Navbar = () => {
                 <DropdownMenuContent className="w-48">
                   <DropdownMenuLabel>Hi, Naufal</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <Link href={"/profile"}>
+                  <Link href={"/users/test/profile"}>
                     <DropdownMenuItem className="cursor-pointer">
                       <LucideUser className="mr-2" size={16} />
                       <span>Profile</span>
                     </DropdownMenuItem>
                   </Link>
-                  <Link href={"/posts"} className="w-full">
+                  <Link href={"/users/test/posts"} className="w-full">
                     <DropdownMenuItem className="cursor-pointer">
                       <LucideNewspaper className="mr-2" size={16} />
                       <span>Posts</span>
