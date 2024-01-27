@@ -14,6 +14,7 @@ import {
 } from "./ui/dropdown-menu";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import { Toggle } from "./ui/toggle";
+import { cn } from "@/lib/utils";
 
 interface AlignSelectorProps {
   editor: Editor | undefined;
@@ -31,21 +32,27 @@ const AlignSelector: FC<AlignSelectorProps> = ({
   const aligns: EditorBubbleMenuItem[] = [
     {
       name: "Left",
-      command: () => editor?.chain().focus().run(),
-      isActive: () => editor?.isActive("center"),
+      command: () => editor?.chain().focus().setTextAlign("left").run(),
+      isActive: () => editor?.isActive({ textAlign: "left" }),
       icon: AlignLeftIcon,
     },
     {
       name: "Center",
-      command: () => editor?.chain().focus().run(),
-      isActive: () => editor?.isActive("center"),
+      command: () => editor?.chain().focus().setTextAlign("center").run(),
+      isActive: () => editor?.isActive({ textAlign: "center" }),
       icon: AlignJustifyIcon,
     },
     {
       name: "Right",
-      command: () => editor?.chain().focus().run(),
-      isActive: () => editor?.isActive("center"),
+      command: () => editor?.chain().focus().setTextAlign("right").run(),
+      isActive: () => editor?.isActive({ textAlign: "right" }),
       icon: AlignRightIcon,
+    },
+    {
+      name: "Justify",
+      command: () => editor?.chain().focus().setTextAlign("justify").run(),
+      isActive: () => editor?.isActive({ textAlign: "justify" }),
+      icon: AlignJustifyIcon,
     },
   ];
 
@@ -59,7 +66,6 @@ const AlignSelector: FC<AlignSelectorProps> = ({
           <MoreVerticalIcon size={16} />
         </div>
       </DropdownMenuTrigger>
-      {/* <DropdownMenuPortal container={containerRef.current}> */}
       <DropdownMenuContent
         align="center"
         ref={containerRef.current}
@@ -67,17 +73,24 @@ const AlignSelector: FC<AlignSelectorProps> = ({
       >
         <ToggleGroup type="single" className="w-fit">
           {aligns.map((align, index) => (
-            <ToggleGroupItem
+            <button
               key={index}
+              type="button"
               value={align.name}
               onClick={align.command}
+              className={cn(
+                "h-8 px-2 bg-transparent inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors hover:bg-zinc-100 hover:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-400 dark:focus-visible:ring-zinc-300",
+                {
+                  "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50":
+                    align.isActive(),
+                }
+              )}
             >
               <align.icon size={16} />
-            </ToggleGroupItem>
+            </button>
           ))}
         </ToggleGroup>
       </DropdownMenuContent>
-      {/* </DropdownMenuPortal> */}
     </DropdownMenu>
   );
 };

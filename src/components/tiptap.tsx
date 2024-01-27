@@ -13,18 +13,18 @@ import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 import Bold from "@tiptap/extension-bold";
+import Underline from "@tiptap/extension-underline";
+import Italic from "@tiptap/extension-italic";
+import TextAlign from "@tiptap/extension-text-align";
 import { Button } from "./ui/button";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 import {
   Bold as BoldIcon,
   Check,
   ChevronsDown,
-  Italic,
   Link,
   MoreVertical,
   Palette,
-  Strikethrough,
-  Underline,
 } from "lucide-react";
 import { TfiParagraph } from "react-icons/tfi";
 import {
@@ -39,6 +39,14 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { FaParagraph } from "react-icons/fa6";
 import { EditorBubbleMenu } from "./bubble-menu";
+import BulletList from "@tiptap/extension-bullet-list";
+import HardBreak from "@tiptap/extension-hard-break";
+import Heading from "@tiptap/extension-heading";
+import ListItem from "@tiptap/extension-list-item";
+import OrderedList from "@tiptap/extension-ordered-list";
+import History from "@tiptap/extension-history";
+import Gapcursor from "@tiptap/extension-gapcursor";
+import Strike from "@tiptap/extension-strike";
 
 const MenuBar = ({ editor }: { editor: Editor | null }) => {
   //   const { editor } = useCurrentEditor();
@@ -106,15 +114,9 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         >
           <BoldIcon size={16} />
         </ToggleGroupItem>
-        <ToggleGroupItem value="I">
-          <Italic size={16} />
-        </ToggleGroupItem>
-        <ToggleGroupItem value="U">
-          <Underline size={16} />
-        </ToggleGroupItem>
-        <ToggleGroupItem value="S">
-          <Strikethrough size={16} />
-        </ToggleGroupItem>
+        <ToggleGroupItem value="I"></ToggleGroupItem>
+        <ToggleGroupItem value="U"></ToggleGroupItem>
+        <ToggleGroupItem value="S"></ToggleGroupItem>
         {/* <ToggleGroupItem value="L">
               <Link size={16} />
             </ToggleGroupItem> */}
@@ -324,10 +326,34 @@ const frameworks = [
 
 export default function Tiptap() {
   const editor = useEditor({
-    extensions: [Document, Paragraph, Text, Bold, StarterKit],
-    content: "<p>Hello</p>",
+    extensions: [
+      Document,
+      Paragraph.configure({
+        HTMLAttributes: {
+          class: "mb-2 text-zinc-50 text-base",
+        },
+      }),
+      Text,
+      Bold,
+      Underline,
+      Italic,
+      Strike,
+      BulletList,
+      HardBreak,
+      Heading.configure({
+        levels: [1, 2, 3, 4, 5, 6],
+      }),
+      ListItem,
+      OrderedList,
+      TextAlign.configure({
+        types: ["paragraph", "heading"],
+      }),
+      Gapcursor,
+      History,
+    ],
+    content:
+      "<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi veniam sit voluptas aliquam repellendus vel dolores nulla inventore ipsam doloribus omnis incidunt sunt, a quae totam eos ad accusamus et voluptatibus ab, hic, asperiores minima? Accusamus ipsum natus deserunt nesciunt, dolorem distinctio voluptate aliquid at atque rem beatae sit cumque, quis delectus exercitationem earum vero facere. Quo natus maxime voluptas illo cupiditate voluptatibus nobis consequuntur recusandae, aspernatur ea! Ratione dolor ut eos amet ipsum facere perferendis voluptas sit eum vitae dolore, labore dolores repudiandae molestias accusantium placeat quam quasi vero ipsam officia obcaecati autem? Ea ducimus dolor dolorem amet qui.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi veniam sit voluptas aliquam repellendus vel dolores nulla inventore ipsam doloribus omnis incidunt sunt, a quae totam eos ad accusamus et voluptatibus ab, hic, asperiores minima? Accusamus ipsum natus deserunt nesciunt, dolorem distinctio voluptate aliquid at atque rem beatae sit cumque, quis delectus exercitationem earum vero facere. Quo natus maxime voluptas illo cupiditate voluptatibus nobis consequuntur recusandae, aspernatur</p>",
   });
-
   return (
     // <EditorProvider
     //   children

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Command, CommandGroup, CommandItem } from "./ui/command";
+import { cn } from "@/lib/utils";
 
 interface HeadingSelectorProps {
   editor: Editor | undefined;
@@ -89,25 +90,30 @@ const HeadingSelector: FC<HeadingSelectorProps> = ({
           <ChevronDown size={16} />
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-fit p-2 top-full">
-        <Command>
-          <CommandGroup>
-            {headings.map((heading, index) => (
-              <CommandItem
-                key={index}
-                onSelect={() => {
-                  heading.command();
-                  setIsOpen(false);
-                }}
-                value={heading.name}
-                className="flex gap-3 w-fit"
-              >
-                <heading.icon size={16} />
-                {heading.name}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </Command>
+      <PopoverContent className="w-fit p-2 top-full space-y-1">
+        {/* <Command> */}
+        {/* <CommandGroup> */}
+        {headings.map((heading, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => {
+              heading.command();
+              setIsOpen(false);
+            }}
+            className={cn(
+              "flex gap-3 w-fit relative cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-none hover:bg-zinc-100 text-zinc-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:text-zinc-50 dark:hover:bg-zinc-800",
+              {
+                "bg-zinc-100 dark:bg-zinc-800": heading.isActive(),
+              }
+            )}
+          >
+            <heading.icon size={16} />
+            {heading.name}
+          </button>
+        ))}
+        {/* </CommandGroup> */}
+        {/* </Command> */}
       </PopoverContent>
     </Popover>
   );
