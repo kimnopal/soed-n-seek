@@ -1,6 +1,7 @@
 "use client";
 
 import Tiptap from "@/components/tiptap";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -9,6 +10,14 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Form,
   FormControl,
@@ -25,8 +34,15 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, ChevronsUpDown } from "lucide-react";
-import { useState } from "react";
+import {
+  Check,
+  ChevronsUpDown,
+  LucideLogOut,
+  LucideNewspaper,
+  LucideUser,
+} from "lucide-react";
+import Link from "next/link";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -87,6 +103,8 @@ const CreatePostPage = () => {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
   };
+
+  const containerRef = useRef(null);
 
   return (
     <>
@@ -185,7 +203,7 @@ const CreatePostPage = () => {
                 )}
               />
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6" ref={containerRef}>
               {/* <FormField
                 control={form.control}
                 name="description"
@@ -199,6 +217,40 @@ const CreatePostPage = () => {
                   </FormItem>
                 )}
               /> */}
+              {/* <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <div className="block border dark:border-zinc-800 p-1 rounded-full cursor-pointer">
+                    <Avatar>
+                      <AvatarImage src="" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-48"
+                  ref={containerRef.current}
+                >
+                  <DropdownMenuLabel>Hi, Naufal</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <Link href={"/users/test/profile"}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <LucideUser className="mr-2" size={16} />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href={"/users/test/posts"} className="w-full">
+                    <DropdownMenuItem className="cursor-pointer">
+                      <LucideNewspaper className="mr-2" size={16} />
+                      <span>Posts</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <LucideLogOut className="mr-2" size={16} />
+                    <span>Logout</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu> */}
             </div>
           </div>
           <Tiptap />

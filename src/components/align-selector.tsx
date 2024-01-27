@@ -57,7 +57,7 @@ const AlignSelector: FC<AlignSelectorProps> = ({
   ];
 
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu modal={false} open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger
         asChild
         className="text-sm font-medium h-8 px-2 transition-colors hover:rounded-md dark:text-zinc-50 dark:hover:text-zinc-400 dark:hover:bg-zinc-800"

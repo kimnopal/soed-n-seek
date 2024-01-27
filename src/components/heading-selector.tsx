@@ -85,14 +85,11 @@ const HeadingSelector: FC<HeadingSelectorProps> = ({
         <div className="flex items-center gap-1 w-fit">
           <div>
             <activeHeading.icon size={16} />
-            {/* <span>{activeHeading.name}</span> */}
           </div>
           <ChevronDown size={16} />
         </div>
       </PopoverTrigger>
       <PopoverContent className="w-fit p-2 top-full space-y-1">
-        {/* <Command> */}
-        {/* <CommandGroup> */}
         {headings.map((heading, index) => (
           <button
             key={index}
@@ -112,8 +109,6 @@ const HeadingSelector: FC<HeadingSelectorProps> = ({
             {heading.name}
           </button>
         ))}
-        {/* </CommandGroup> */}
-        {/* </Command> */}
       </PopoverContent>
     </Popover>
   );

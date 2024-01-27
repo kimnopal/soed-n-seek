@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -7,10 +9,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FaBook,
   FaNewspaper,
@@ -27,6 +30,9 @@ import {
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const containerNavbarRef = useRef(null);
 
   return (
     <header>
@@ -35,7 +41,7 @@ const Navbar = () => {
           <Link href={"/"} className="text-xl text-zinc-50 font-semibold">
             SoednSeek
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" ref={containerNavbarRef}>
             <Link
               href={"/posts/create"}
               className="bg-zinc-900 flex items-center justify-center p-2 rounded-md text-sm gap-2"
@@ -55,7 +61,11 @@ const Navbar = () => {
                 Sign In
               </Link>
             ) : (
-              <DropdownMenu modal={false}>
+              <DropdownMenu
+                modal={false}
+                open={isOpen}
+                onOpenChange={setIsOpen}
+              >
                 <DropdownMenuTrigger asChild>
                   <div className="block border dark:border-zinc-800 p-1 rounded-full cursor-pointer">
                     <Avatar>
@@ -64,7 +74,10 @@ const Navbar = () => {
                     </Avatar>
                   </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48">
+                <DropdownMenuContent
+                  className="w-48"
+                  ref={containerNavbarRef.current}
+                >
                   <DropdownMenuLabel>Hi, Naufal</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <Link href={"/users/test/profile"}>
