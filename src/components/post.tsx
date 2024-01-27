@@ -13,7 +13,7 @@ const Post = () => {
           </h2>
 
           <div className="text-zinc-400 flex gap-2">
-            <Badge variant={"missing"} className="text-sm">
+            <Badge variant={"missing"} href="/" className="text-sm">
               missing
             </Badge>
             <span>&#8226;</span>

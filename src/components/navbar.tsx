@@ -18,7 +18,12 @@ import {
   FaRegUser,
   FaUser,
 } from "react-icons/fa6";
-import { LucideLogOut, LucideNewspaper, LucideUser } from "lucide-react";
+import {
+  LucideLogOut,
+  LucideNewspaper,
+  LucidePlus,
+  LucideUser,
+} from "lucide-react";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -30,7 +35,13 @@ const Navbar = () => {
           <Link href={"/"} className="text-xl text-zinc-50 font-semibold">
             SoednSeek
           </Link>
-          <div>
+          <div className="flex items-center gap-4">
+            <Link
+              href={"/posts/create"}
+              className="bg-zinc-900 flex items-center justify-center p-2 rounded-md text-sm gap-2"
+            >
+              <LucidePlus size={16} />
+            </Link>
             {!isLoggedIn ? (
               <Link
                 href={"/auth/login"}
@@ -44,7 +55,7 @@ const Navbar = () => {
                 Sign In
               </Link>
             ) : (
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <div className="block border dark:border-zinc-800 p-1 rounded-full cursor-pointer">
                     <Avatar>
